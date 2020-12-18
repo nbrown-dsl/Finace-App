@@ -10,7 +10,9 @@ html {
 .bold {
     font-weight: bold;
 }
-
+.row{
+    margin: 0!important;
+}
 
 /*no projeect list (no projects) */
 
@@ -42,4 +44,26 @@ html {
 		font-size: calc(16px + 6vw);
 
 	}
+}
+
+/*project detail expanses */
+.section-expanses button{
+    padding: 0px 40px;
+    font-weight: bold;
+    text-shadow: opx 3px 4px rgba(0,0,0 .25);
+    background-color:#6FCF97;
+}
+
+.section-expanses .expnse{
+    font-size: 16px;
+    border-radius: 0;
+    margin: 0;
+}
+
+.section-expanses .expanse .category{
+    font-size: 13px;
+}
+
+.section-expanses li:nth-child(even) .expanse {
+    background-color: grey;
 }
