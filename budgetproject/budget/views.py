@@ -13,17 +13,21 @@ def project_list(request):
 def project_detail(request, project_slug):
 	project = get_object_or_404(Project, slug=project_slug)
 	if request.method == 'POST':
-		form = ExpanseForm(request.POST) 
+		form = ExpanseForm(request.POST or None) 
 		if form.is_valid():
-			title = form.cleaned_data['title']
-			amount = form.cleaned_data['amount']
+			form.save()
+		# if form.is_valid():
+		# 	title = form.cleaned_data['title']
+		# 	amount = form.cleaned_data['amount']
 
-			Expanse.objects.create(
-				project = project,
-				title = title,
-				amount = amount).save()
-		return HttpResponseRedirect(project_slug)
-	return render(request,'budget/project_detail.html',{'project':project, 'expanse_list': project.expanses.all()})	
+			# Expanse.objects.create(
+			# 	project = project,
+			# 	title = title,
+			# 	amount = amount).save()
+		# return HttpResponseRedirect(project_slug)
+		else:
+			print(form.errors)
+	return render(request,'budget/project_detail.html',{'project':project, 'expanse_list': Expanse.objects.all})	
 
 
 class ViewBudgets(CreateView):

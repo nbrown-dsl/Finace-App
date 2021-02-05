@@ -51,12 +51,11 @@
 			<h4>Add new speadning</h4>
 			<form method="POST">
 				{% csrf_token %} <!--Always use this-->
-				<label for="name">Name of the speadning</label>
+				<label for="name">Name of the spending</label>
 				<input title="name" id="name">
 
 				<label for="cost">Cost</label>
 				<input title="cost" id="cost">
-
 				<button type="submit" class="btn">Submit</button>
 			</form>
 		</div>
