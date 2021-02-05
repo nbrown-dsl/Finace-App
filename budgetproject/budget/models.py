@@ -11,7 +11,7 @@ class Project(models.Model):
         self.slug = slugify(self.name)
         super(Project, self).save(*args, **kwargs)
 
-"""This is the category for expanses"""
+"""This is the model for expanses"""
 class Expanse(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='expanses')
     title = models.CharField(max_length=100)
