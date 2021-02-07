@@ -11,6 +11,9 @@ class Project(models.Model):
         self.slug = slugify(self.name)
         super(Project, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.name
+
 """This is the model for expanses"""
 class Expanse(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='expanses')
