@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Project, Expanse
 from django.views.generic import CreateView
 from django.utils.text import slugify
@@ -7,11 +7,12 @@ from .forms import ExpanseForm
 
 
 def project_list(request):
-	return render(request,'budget/project_list.html')#returns budget webpage
+	projects = Project.objects.all()
+	return render(request,'budget/project_list.html',{'projects':projects})#returns budget webpage
 
 
-def project_detail(request, project_slug):
-	project = get_object_or_404(Project, slug=project_slug)
+def project_detail(request, projectId):
+	project = Project.objects.get(pk=projectId)
 	
 	if request.method == 'POST':
 		form = ExpanseForm(request.POST or None) 
@@ -43,7 +44,8 @@ class ViewBudgets(CreateView):
 		self.object = form.save(commit=False)
 		self.object.save()
 
-		return HttpResponseRedirect(self.get_success_url())
+		# return HttpResponseRedirect(self.get_success_url())
+		return redirect ('project_list')
 
 	def get_success_url(self):
 		return slugify(self.request.POST['name'])

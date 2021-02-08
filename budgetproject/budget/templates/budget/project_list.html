@@ -2,6 +2,31 @@
 {% extends 'budget/base.html' %} 
 
 {% block content %}
+
+<h1>Projects</h1>
+
+<ul class="z-depth-1">
+	{%for project in projects %}
+	<li>
+		<div class="card-panel z-depth-0 expanse">
+			<div class="row">
+
+				<div class="col 16">
+					<span class="title"><a href="{% url 'project_detail' project.id %}">{{project.name}}</a></span>
+				</div>
+
+				<div class="col 13">
+					<span class="title">£{{project.budget}}</span>
+				</div>
+				<a href="">
+					<i class="material-icons red-text right"> close</i>
+				</a>
+			</div>
+		</div>
+	</li>
+	{%endfor%}
+</ul>
+
 	<div class="container">
 	    <div class="nonproject-wrapper center">
 	        <h3 class="grey-text">Sorry you don't have any projects,yet</h3>
